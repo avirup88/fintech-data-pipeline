@@ -1,0 +1,18 @@
+FROM bitnami/spark:latest
+
+# Set working directory
+WORKDIR /scripts
+
+# Ensure Python and pip are available in user space
+RUN apt-get update && apt-get install -y python3 python3-pip && rm -rf /var/lib/apt/lists/* || echo "Skipping APT due to permissions"
+
+# Install required Python packages in user space
+RUN pip3 install --user joblib numpy scikit-learn
+
+# Copy scripts to container
+COPY scripts /scripts
+
+# Ensure Spark uses the installed Python packages
+ENV PYTHONPATH="/root/.local/lib/python3.8/site-packages"
+
+CMD ["/opt/bitnami/spark/bin/spark-class", "org.apache.spark.deploy.master.Master"]
