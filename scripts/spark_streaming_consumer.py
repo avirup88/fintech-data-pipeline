@@ -80,5 +80,5 @@ try:
     query.awaitTermination()
 
 except Exception as e:
-    print(f"🔥 ERROR: {e}")
+    print(f"ERROR: {e}")
     spark.stop()
