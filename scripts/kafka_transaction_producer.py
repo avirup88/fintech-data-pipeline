@@ -36,7 +36,7 @@ def generate_transaction():
     }
 
 def produce_transactions():
-    print(f"🚀 Sending transactions to Kafka topic: {KAFKA_TOPIC}")
+    print(f"Sending transactions to Kafka topic: {KAFKA_TOPIC}")
     while True:
         transaction = generate_transaction()
         try:
